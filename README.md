@@ -256,10 +256,10 @@ This command imports the provided public key to a single region: **
 
 Create a file "my_file.sh" for the "user_data" argument then copy and paste the following commands:
 
-  sudo yum update -y
-  sudo yum install -y httpd.x86_64
-  sudo systemctl start httpd.service
-  sudo systemctl enable httpd.service
+    sudo yum update -y
+    sudo yum install -y httpd.x86_64
+    sudo systemctl start httpd.service
+    sudo systemctl enable httpd.service
 
 ## 4. Terraform init
 
