@@ -216,7 +216,7 @@ provider "aws" {
 }
 ```
 
-If u want to store the terraform.tfstate file remotely on the S3 bucket replace the previous terraform configuration and paste the followings:
+If yu want to store the terraform.tfstate file remotely on the S3 bucket replace the previous terraform configuration and paste the followings:
 
 ```hcl
 terraform {
@@ -234,7 +234,7 @@ provider "aws" {
 ```
 # Stand up the infrastructure
 
-Follow the steps #1, #8 and #9 if you want to create a S3 bucket on AWS for store the terraform state file remotely.
+Follow steps #1, #8, and #9 if you want to create an S3 bucket on AWS to store the terraform state file remotely.
 
 ## 1. Create a bucket
 
