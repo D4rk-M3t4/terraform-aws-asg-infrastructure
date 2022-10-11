@@ -1,6 +1,6 @@
 # AWS VPC Terraform module
-Terraform modules which create VPC resources on AWS and run Apache web server.
-This project was developed in Terraform 1.3 and is built based on autoscaling group EC2 with the desired arguments.
+AWS Terraform modules create VPC resources on AWS and run an Apache web server.
+This project was created with Terraform 1.3 and is based on the autoscaling group EC2 with the specified arguments.
 
 # Usage
 
@@ -216,7 +216,7 @@ provider "aws" {
 }
 ```
 
-If yu want to store the terraform.tfstate file remotely on the S3 bucket replace the previous terraform configuration and paste the followings:
+If you want to store the terraform.tfstate file remotely on the S3 bucket, replace the previous terraform configuration and paste the following:
 
 ```hcl
 terraform {
