@@ -1,4 +1,4 @@
-module "ec2" {
+module "asg" {
   source      = "./modules"
   name        = var.name
   environment = var.environment

@@ -1,9 +1,9 @@
-output "alb_dns_name_ec2" {
-  description = "The DNS name of the application load balancer for the EC2 instances"
-  value       = module.ec2.alb_dns_name
+output "alb_dns_name_asg" {
+  description = "The DNS name of the application load balancer"
+  value       = module.asg.alb_dns_name
 }
 
-output "url_ec2" {
-  description = "The url of the dns server for the EC2 instances"
-  value       =  module.ec2.url
+output "url_asg" {
+  description = "The url of the dns server of the web server"
+  value       =  module.asg.url
 }

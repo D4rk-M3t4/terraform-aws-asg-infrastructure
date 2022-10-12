@@ -4,17 +4,17 @@ This project was created with Terraform 1.3 and is based on the autoscaling grou
 
 # Usage
 
-## EC2 infrastructure
+## ASG infrastructure
 
-![](ec2.png)
+![](asg.png)
 
 ### Module
 
 ```hcl
-module "ec2-infrastructure" {
-  source      = "enriquecs095/ec2-infrastructure/aws"
+module "asg-infrastructure" {
+  source      = "enriquecs095/asg-infrastructure/aws"
   version     = "4.34.0"
-  name        = "ec2"
+  name        = "asg"
   environment = "environment_name"
   providers = {
     aws = aws.main_region
@@ -52,7 +52,7 @@ module "ec2-infrastructure" {
           type        = "ingress"
         },
         {
-          name        = "egress_rule_1"
+          name        = "egress_rule_3"
           description = "Allow outbound trafic to anywhere"
           protocol    = "-1"
           from_port   = 0
@@ -67,7 +67,7 @@ module "ec2-infrastructure" {
       description = "Security group for instances"
       list_of_rules = [
         {
-          name        = "ingress_rule_3"
+          name        = "ingress_rule_2"
           description = "Allow inbound trafic from anywhere"
           protocol    = "-1"
           from_port   = 0
@@ -187,20 +187,20 @@ module "ec2-infrastructure" {
     }
   }
   devops_name  = "DevOps"
-  project_name = "ec2_project"
+  project_name = "asg_project"
 }
 ```
 ### Output file
 
 ```hcl
-output "alb_dns_name_ec2" {
-  description = "The DNS name of the application load balancer for the EC2 instances"
-  value       = module.ec2-infrastructure.alb_dns_name_ec2
+output "alb_dns_name_asg" {
+  description = "The DNS name of the application load balancer"
+  value       = module.asg-infrastructure.alb_dns_name_asg
 }
 
-output "url_ec2" {
-  description = "The url of the dns server for the EC2 instances"
-  value       =  module.ec2-infrastructure.url_ec2
+output "url_asg" {
+  description = "The url of the dns server for the web application"
+  value       =  module.asg-infrastructure.url_asg
 }
 ```
 ### Configuration file 
@@ -234,7 +234,7 @@ provider "aws" {
 ```
 # Stand up the infrastructure
 
-Follow steps #1, #8, and #9 if you want to create an S3 bucket on AWS to store the terraform state file remotely.
+Follow steps #1, #9, and #10 if you want to create an S3 bucket on AWS to store the terraform state file remotely.
 
 ## 1. Create a bucket
 
@@ -256,6 +256,7 @@ This command imports the provided public key to a single region: **
 
 Create a file "my_file.sh" for the "user_data" argument then copy and paste the following commands:
 
+    #! /bin/bash
     sudo yum update -y
     sudo yum install -y httpd.x86_64
     sudo systemctl start httpd.service
@@ -333,7 +334,6 @@ Run the following command and change the parameter values:**
 
 ## Documentation
 
-- [Terraform Input Variables](https://www.terraform.io/language/values/variables#input-variable-documentation)
 - [Terraform Backend Configuration](https://www.terraform.io/language/settings/backends/configuration)
 - [Creating AWS Bucket Resource](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html)
 - [Emptying AWS Bucket Resource](https://docs.aws.amazon.com/AmazonS3/latest/userguide/empty-bucket.html)
